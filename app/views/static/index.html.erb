@@ -1,0 +1,11 @@
+<%= javascript_pack_tag 'application'%>
+<%= react_component(
+    "Search", {
+         latitude: "47.660275", 
+         longitude: "-122.345951", 
+         address: "4325 Whitman Ave Unit # B, Seattle, WA 98103"
+         },{
+             prerender: true
+         }
+         )
+         %>
