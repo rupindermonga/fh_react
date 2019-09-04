@@ -14,6 +14,14 @@ function getHouses() {
 
 class Search extends React.Component {
   render() {
+    const { houses } = this.props;
+    const housesList = houses.map(house => {
+      return (
+        <li>
+          {house.latitude} {house.longitude} {house.address}
+        </li>
+      );
+    });
     return (
       <React.Fragment>
         Latitude: {this.props.latitude}
@@ -22,6 +30,8 @@ class Search extends React.Component {
         <button className="getHousesBtn" onClick={() => this.props.getHouses()}>
           Search
         </button>
+        <br />
+        <ul>{housesList}</ul>
       </React.Fragment>
     );
   }
