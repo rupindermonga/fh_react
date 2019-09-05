@@ -4,14 +4,25 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 const GET_HOUSES_REQUEST = "GET_HOUSES_REQUEST";
+const GET_HOUSES_SUCCESS = "GET_HOUSES_SUCCESS";
 
 function getHouses() {
   console.log("getHouses() Action!!");
-  return {
-    type: GET_HOUSES_REQUEST
+  return dispatch => {
+    dispatch({ type: GET_HOUSES_REQUEST });
+    return fetch("v1/houses.json")
+      .then(response => response.json())
+      .then(json => dispatch(getHousesSuccess(json)))
+      .catch(error => console.log(error));
   };
 }
 
+export function getHousesSuccess(json) {
+  return {
+    type: GET_HOUSES_SUCCESS,
+    json
+  };
+}
 class Search extends React.Component {
   render() {
     const { houses } = this.props;

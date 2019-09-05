@@ -1,5 +1,6 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { AST_SymbolBlockDeclaration } from "terser";
+import thunk from "redux-thunk";
 
 const initialState = {
   houses: [
@@ -14,12 +15,13 @@ const initialState = {
 function rootReducer(state, action) {
   console.log(action.type);
   switch (action.type) {
-    default:
-      return state;
+    case "GET_HOUSES_SUCCESS":
+      return { houses: action.json.houses };
   }
+  return state;
 }
 
 export default function configureStore() {
-  const store = createStore(rootReducer, initialState);
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
   return store;
 }

@@ -4,6 +4,10 @@ class V1::HousesController < ApplicationController
             {
                 :name => 'Rupinder',
                 :guid => 'ABCD'
+            },
+            {
+                :name => 'Monga',
+                :guid => 'XYZ'
             }
         ]}.to_json
     end
